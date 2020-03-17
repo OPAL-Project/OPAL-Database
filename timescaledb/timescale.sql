@@ -60,7 +60,7 @@ CREATE UNIQUE INDEX IF NOT EXISTS userid_null_country_idx ON user2id_map(country
 -- Define antenna name id map
 CREATE TABLE IF NOT EXISTS antenna_name2id_map (
   id SERIAL,
-  antenna_name char(32) NOT NULL UNIQUE,
+  antenna_name varchar(32) NOT NULL UNIQUE,
   CONSTRAINT antenna_name2id_map_pkey PRIMARY KEY (id)
 );
 
@@ -71,8 +71,8 @@ CREATE TABLE IF NOT EXISTS antenna_records (
   date_to timestamp with time zone NOT NULL,
   latitude double precision NOT NULL,
   longitude double precision NOT NULL,
-  location_level_1 char(30) COLLATE pg_catalog."default" NOT NULL,
-  location_level_2 char(30) COLLATE pg_catalog."default" NOT NULL,
+  location_level_1 varchar(30) COLLATE pg_catalog."default" NOT NULL,
+  location_level_2 varchar(30) COLLATE pg_catalog."default" NOT NULL,
   CONSTRAINT antenna_records_pkey PRIMARY KEY (id),
   -- UNIQUE (date_from, date_to, latitude, longitude), -- TODO Later Stage
   FOREIGN KEY (id) REFERENCES antenna_name2id_map(id) ON DELETE CASCADE
